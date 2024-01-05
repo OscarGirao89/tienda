@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block contenido%}
+<div class="container mt-5">
+  <h2>Carrito de Compras</h2>
+  <div class="row">
+    {% for item in carrito_items %}
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <img
+          src="{{ item.producto.imagen.url }}"
+          class="card-img-top"
+          alt="{{ item.producto.nombre }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ item.producto.nombre }}</h5>
+          <p class="card-text">{{ item.producto.descripcion }}</p>
+          <p class="card-text">Precio: ${{ item.producto.precio }}</p>
+          <label>Cantidad:</label>
+          <input
+            type="number"
+            value="{{ item.cantidad }}"
+            min="1"
+            class="form-control mb-2"
+          />
+          <a
+            href="{% url 'eliminar_producto' item.producto.id %}"
+            class="btn btn-danger btn-sm"
+            >Eliminar</a
+          >
+          <a
+            href="{% url 'detalle_producto' item.producto.id %}"
+            class="btn btn-primary btn-sm"
+            >Ver Producto</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

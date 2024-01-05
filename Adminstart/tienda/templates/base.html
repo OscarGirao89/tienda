@@ -56,6 +56,37 @@
             Buscar
           </button>
         </form>
+        {% if user.is_authenticated %}
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user' %}">
+              <img
+                src="{% static 'images/user.png' %}"
+                width="20"
+                height="20"
+                class="mr-1"
+                alt=""
+              />
+              Hola, {{ request.user.username }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "carrito" %}">
+              <img
+                src="{% static 'images/carrito.png' %}"
+                width="20"
+                height="20"
+                class="mr-1"
+                alt=""
+              />
+              Carrito
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'cerrar' %}">Cerrar Sesión</a>
+          </li>
+        </ul>
+        {% else %}
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="{% url 'ingresar' %}">Iniciar Sesión</a>
@@ -64,41 +95,12 @@
             <a class="nav-link" href="{% url 'registrar' %}">Registrarse</a>
           </li>
         </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <img
-                src="{% static 'images/user.png' %}"
-                width="20"
-                height="20"
-                class="mr-1"
-                alt=""
-              />
-              Hola, NombreAleatorio
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <img
-                src="{% static 'images/carrito.png' %}"
-                width="20"
-                height="20"
-                class="mr-1"
-                alt=""
-              />
-              Cesta
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'cerrar' %}">Cerrar Sesión</a>
-          </li>
-        </ul>
+        {%endif%}
       </div>
     </nav>
 
     <!-- Contenido de la página -->
-    <div class="container mt-5">
-      <h2>Contenido de la página</h2>
+    <div class="container p-5 m-5">
       {% block contenido%}{% endblock %}
       <!-- Tu contenido va aquí -->
     </div>
