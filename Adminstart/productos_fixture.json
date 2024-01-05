@@ -1,0 +1,102 @@
+[
+    {
+        "model": "tienda.producto",
+        "pk": 1,
+        "fields": {
+            "nombre": "Clase de Salsa",
+            "precio": 29.99,
+            "descripcion": "Aprende los pasos básicos y avanzados de la salsa en esta emocionante clase.",
+            "imagen": null
+        }
+    },
+    {
+        "model": "tienda.producto",
+        "pk": 2,
+        "fields": {
+            "nombre": "Clase de Tango",
+            "precio": 34.99,
+            "descripcion": "Explora la elegancia y la pasión del tango argentino con nuestros experimentados instructores.",
+            "imagen": null
+        }
+    },
+    {
+        "model": "tienda.producto",
+        "pk": 3,
+        "fields": {
+            "nombre": "Clase de Hip-Hop",
+            "precio": 24.99,
+            "descripcion": "Conviértete en un maestro del baile urbano con esta clase dinámica de hip-hop.",
+            "imagen": null
+        }
+    },
+    {
+        "model": "tienda.producto",
+        "pk": 4,
+        "fields": {
+            "nombre": "Clase de Ballet",
+            "precio": 39.99,
+            "descripcion": "Descubre la gracia y la elegancia del ballet en nuestra clase exclusiva.",
+            "imagen": null
+        }
+    },
+    {
+        "model": "tienda.producto",
+        "pk": 5,
+        "fields": {
+            "nombre": "Clase de Flamenco",
+            "precio": 44.99,
+            "descripcion": "Siente la pasión y la emoción del flamenco en esta clase intensiva.",
+            "imagen": null
+        }
+    },
+    {
+        "model": "tienda.producto",
+        "pk": 6,
+        "fields": {
+            "nombre": "Clase de Jazz",
+            "precio": 27.99,
+            "descripcion": "Descubre la energía y la creatividad del jazz en esta clase única.",
+            "imagen": null
+        }
+    },
+    {
+        "model": "tienda.producto",
+        "pk": 7,
+        "fields": {
+            "nombre": "Clase de Breakdance",
+            "precio": 32.99,
+            "descripcion": "Aprende los movimientos espectaculares del breakdance con instructores expertos.",
+            "imagen": null
+        }
+    },
+    {
+        "model": "tienda.producto",
+        "pk": 8,
+        "fields": {
+            "nombre": "Clase de Danza Contemporánea",
+            "precio": 36.99,
+            "descripcion": "Explora la expresión artística y la libertad de movimiento en esta clase de danza contemporánea.",
+            "imagen": null
+        }
+    },
+    {
+        "model": "tienda.producto",
+        "pk": 9,
+        "fields": {
+            "nombre": "Clase de Baile Folklórico",
+            "precio": 31.99,
+            "descripcion": "Descubre las tradiciones culturales a través del baile folklórico en esta emocionante clase.",
+            "imagen": null
+        }
+    },
+    {
+        "model": "tienda.producto",
+        "pk": 10,
+        "fields": {
+            "nombre": "Clase de Danza del Vientre",
+            "precio": 37.99,
+            "descripcion": "Embárcate en un viaje de gracia y misterio con nuestra clase de danza del vientre.",
+            "imagen": null
+        }
+    }
+]

@@ -7,14 +7,17 @@
         alt="{{ producto.nombre }}"
         class="img-fluid rounded shadow"
       />
-      <p>{{ producto.imagen.url }}</p>
     </div>
     <div class="col-md-6">
       <h1 class="text-primary">{{producto.nombre}}</h1>
       <p class="h3 text-success">{{producto.precio}}</p>
       <p class="lead">{{producto.descripcion}}</p>
-      <button class="btn btn-primary btn-lg">Comprar</button>
-      <button class="btn btn-success btn-lg">Agregar a Carrito</button>
+      
+      <form method="post">
+        <a class="btn btn-primary btn-lg" href="{% url "compra" %}">Comprar</a>
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success btn-lg">Agregar al Carrito</button>
+    </form>
     </div>
   </div>
 </div>

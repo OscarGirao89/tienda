@@ -2,16 +2,23 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from .forms import registro_form, inicio_form
 from django.contrib.auth.decorators import login_required
-from .models import Producto
+from .models import Producto, Carrito, ItemCarrito
 
 
 # Create your views here.
 def index(request):
-    return render(request, "index.html")
+    productos = (
+        Producto.objects.all()
+    )  # Recupera todos los productos de la base de datos
+    return render(request, "index.html", {"productos": productos})
 
 
 def carrito(request):
     return render(request, "carrito.html")
+
+
+def compra(request):
+    return render(request, "compra.html")
 
 
 def producto(request, producto_id):
@@ -21,6 +28,23 @@ def producto(request, producto_id):
 
 def user(request):
     return render(request, "user.html")
+
+
+@login_required
+def producto(request, producto_id):
+    producto = Producto.objects.get(pk=producto_id)
+
+    if request.method == "POST":
+        carrito, creado = Carrito.objects.get_or_create(usuario=request.user)
+
+        item_carrito, creado = ItemCarrito.objects.get_or_create(
+            carrito=carrito, producto=producto
+        )
+        item_carrito.cantidad += 1
+        item_carrito.save()
+        return redirect("producto", producto_id=producto_id)
+
+    return render(request, "producto.html", {"producto": producto})
 
 
 def ingresar(request):

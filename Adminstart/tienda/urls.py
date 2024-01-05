@@ -10,4 +10,5 @@ urlpatterns = [
     path("ingresar/", ingresar, name="ingresar"),
     path("registrar/", registrar, name="registrar"),
     path("cerrar_sesion/", cerrar_sesion, name="cerrar"),
+    path("compra/", compra, name="compra"),
 ]
