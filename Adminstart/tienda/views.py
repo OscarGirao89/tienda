@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from .forms import registro_form, inicio_form
 from django.contrib.auth.decorators import login_required
+from .models import Producto
 
 
 # Create your views here.
@@ -11,6 +12,11 @@ def index(request):
 
 def carrito(request):
     return render(request, "carrito.html")
+
+
+def producto(request, producto_id):
+    producto = Producto.objects.get(pk=producto_id)
+    return render(request, "producto.html", {"producto": producto})
 
 
 def user(request):
