@@ -6,6 +6,16 @@ from .models import Producto, Carrito, ItemCarrito
 
 
 # Create your views here.
+
+
+def base(request):
+    carrito, creado = Carrito.objects.get_or_create(usuario=request.user)
+    items = carrito.itemcarrito_set.all()
+    items_carrito = sum(item.cantidad for item in items)
+
+    return render(request, "base.html", {"items_carrito": items_carrito})
+
+
 def index(request):
     productos = (
         Producto.objects.all()
@@ -14,16 +24,35 @@ def index(request):
 
 
 def carrito(request):
-    return render(request, "carrito.html")
+    carrito, creado = Carrito.objects.get_or_create(usuario=request.user)
+    items = carrito.itemcarrito_set.all()
+    cantidad_items = sum(item.cantidad for item in items)
+
+    precio_total = sum(item.producto.precio * item.cantidad for item in items)
+
+    if request.method == "POST":
+        item_id = request.POST.get("item_id")
+        try:
+            item = ItemCarrito.objects.get(id=item_id)
+            item.delete()
+        except ItemCarrito.DoesNotExist:
+            print("El item no existe en el carrito.")
+        return redirect("carrito")
+
+    return render(
+        request,
+        "carrito.html",
+        {
+            "items": items,
+            "carrito": carrito,
+            "cantidad_items": cantidad_items,
+            "precio_total": precio_total,
+        },
+    )
 
 
 def compra(request):
     return render(request, "compra.html")
-
-
-def producto(request, producto_id):
-    producto = Producto.objects.get(pk=producto_id)
-    return render(request, "producto.html", {"producto": producto})
 
 
 def user(request):

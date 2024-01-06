@@ -2,39 +2,62 @@
 <div class="container mt-5">
   <h2>Carrito de Compras</h2>
   <div class="row">
-    {% for item in carrito_items %}
-    <div class="col-md-4 mb-4">
+    <!-- Columna izquierda - Detalles de productos -->
+    <div class="col-md-8">
+      {% for item in items %}
+      <div class="card mb-3">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img
+              src="{{ item.producto.imagen.url }}"
+              class="card-img"
+              alt="{{ item.producto.nombre }}"
+            />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ item.producto.nombre }}</h5>
+              <p class="card-text">{{ item.producto.descripcion }}</p>
+              <p class="card-text">Precio: €{{ item.producto.precio }}</p>
+              <label for="cantidad">Cantidad:</label>
+              <input
+                type="number"
+                value="{{item.cantidad}}"
+                min="1"
+                class="form-control mb-2"
+                id="cantidad"
+              />
+              <form method="POST" action="{% url 'carrito' %}">
+                {% csrf_token %}
+                <input type="hidden" name="item_id" value="{{ item.id }}" />
+                <button type="submit" class="btn btn-danger btn-sm">
+                  Eliminar
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Columna derecha - Especificaciones y Total -->
+    <div class="col-md-4">
       <div class="card">
-        <img
-          src="{{ item.producto.imagen.url }}"
-          class="card-img-top"
-          alt="{{ item.producto.nombre }}"
-        />
         <div class="card-body">
-          <h5 class="card-title">{{ item.producto.nombre }}</h5>
-          <p class="card-text">{{ item.producto.descripcion }}</p>
-          <p class="card-text">Precio: ${{ item.producto.precio }}</p>
-          <label>Cantidad:</label>
-          <input
-            type="number"
-            value="{{ item.cantidad }}"
-            min="1"
-            class="form-control mb-2"
-          />
-          <a
-            href="{% url 'eliminar_producto' item.producto.id %}"
-            class="btn btn-danger btn-sm"
-            >Eliminar</a
-          >
-          <a
-            href="{% url 'detalle_producto' item.producto.id %}"
-            class="btn btn-primary btn-sm"
-            >Ver Producto</a
-          >
+          <h5 class="card-title">Especificaciones del Producto</h5>
+          <!-- Agrega las especificaciones del producto aquí -->
+
+          <h5 class="card-title mt-4">Total de la Compra</h5>
+          <!-- Calcula y muestra el total de la compra aquí -->
+          <p class="card-text">Cantidad de Productos: {{ cantidad_items}}</p>
+
+          <p class="card-text">Total: €{{ precio_total}}</p>
+
+          <a href="#" class="btn btn-primary btn-block mt-3">Comprar</a>
         </div>
       </div>
     </div>
-    {% endfor %}
   </div>
 </div>
 {% endblock %}
