@@ -1,1 +1,54 @@
-{% extends "base.html" %} {% block contenido%}PROCESO DE COMPRA{% endblock %}
+{% extends "base.html" %} {% block contenido%}
+<div class="container m-5">
+  <h2>Detalle de Compra</h2>
+
+  <!-- Datos del Producto -->
+  <div class="card mb-4">
+    <div class="card-header">Detalles del Producto</div>
+    <div class="card-body">
+      <img
+        src="imagen_producto.jpg"
+        class="img-fluid"
+        alt="Nombre del Producto"
+      />
+      <h5 class="card-title">Nombre del Producto</h5>
+      <p class="card-text">
+        Descripción del producto. Detalles y características.
+      </p>
+      <p class="card-text"><strong>Precio:</strong> $XX.XX</p>
+    </div>
+  </div>
+
+  <!-- Formulario de Compra -->
+  <form>
+    <h2>Datos de Envío y Pago</h2>
+
+    <!-- Datos de Envío -->
+    <div class="form-group">
+      <label for="direccion">Dirección de Envío</label>
+      <input
+        type="text"
+        class="form-control"
+        id="direccion"
+        placeholder="Ingresa tu dirección"
+      />
+    </div>
+
+    <!-- Métodos de Pago -->
+    <div class="form-group">
+      <label for="metodoPago">Método de Pago</label>
+      <select class="form-control" id="metodoPago">
+        <option>Selecciona un método de pago</option>
+        <option>Tarjeta de Crédito</option>
+        <option>Transferencia Bancaria</option>
+        <option>PayPal</option>
+        <!-- Agrega más opciones según sea necesario -->
+      </select>
+    </div>
+
+    <!-- Botón de Comprar -->
+    <button type="submit" class="btn btn-primary">Realizar Compra</button>
+  </form>
+</div>
+
+{% endblock %}

@@ -1,1 +1,60 @@
-{% extends "base.html" %} {% block contenido%}Usuario{% endblock %}
+{% extends "base.html" %} {% block contenido%}
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4">
+      <!-- Información del Usuario -->
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Información del Usuario</h5>
+          <p class="card-text">Nombre: Juan Pérez</p>
+          <p class="card-text">Correo Electrónico: juan@example.com</p>
+          <p class="card-text">Fecha de Registro: 01/01/2023</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <!-- Opciones para Editar el Perfil -->
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Editar Perfil</h5>
+          <form method="POST">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombre"
+                placeholder="Juan Pérez"
+                value="{{usuario.username}}"
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Correo Electrónico</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="juan@example.com"
+                value="{{usuario.email}}"
+              />
+            </div>
+            <div class="form-group">
+              <label for="contrasena">Contraseña</label>
+              <input
+                type="password"
+                class="form-control"
+                id="contrasena"
+                placeholder="********"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Guardar Cambios
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

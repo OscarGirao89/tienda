@@ -3,10 +3,20 @@ from django.db.models import Sum
 
 
 def items_carrito(request):
-    carrito, creado = Carrito.objects.get_or_create(usuario=request.user)
-    items_carrito = (
-        carrito.itemcarrito_set.aggregate(total_items=Sum("cantidad"))["total_items"]
-        or 0
+    carrito = None
+    creado = False
+
+    if request.user.is_authenticated:
+        carrito, creado = Carrito.objects.get_or_create(usuario=request.user)
+    total_items_carrito = (
+        carrito.itemcarrito_set.aggregate(Sum("cantidad"))["cantidad__sum"]
+        if carrito
+        else 0
     )
 
-    return {"items_carrito": items_carrito}
+    return {
+        "items_carrito": carrito.itemcarrito_set.all() if carrito else [],
+        "carrito": carrito,
+        "creado": creado,
+        "total_items_carrito": total_items_carrito,
+    }

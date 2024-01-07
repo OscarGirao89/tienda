@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% load static %}{% block contenido%}
+
+<div class="container mt-5">
+  <h1 class="text-center mb-5">Contacto</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <h4>Información de Contacto</h4>
+      <p><strong>Teléfono:</strong> +123 456 789</p>
+      <p><strong>Email:</strong> info@tutienda.com</p>
+      <p><strong>Dirección:</strong> Calle Principal, Ciudad</p>
+      <h4>Redes Sociales</h4>
+      <a href="#" class="btn btn-primary" target="_blank"
+        ><i class="fab fa-facebook-f"></i> Facebook</a
+      >
+      <a href="#" class="btn btn-info" target="_blank"
+        ><i class="fab fa-twitter"></i> Twitter</a
+      >
+      <a href="#" class="btn btn-danger" target="_blank"
+        ><i class="fab fa-instagram"></i> Instagram</a
+      >
+    </div>
+    <div class="col-md-6">
+      <h4>Ubicación</h4>
+      <!-- Agrega tu propio enlace de Google Maps -->
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe
+          class="embed-responsive-item"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.678901234567!2d-0.000000!3d0.000000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMDAnMzUuNCJOIDAgMC42IsmB!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}

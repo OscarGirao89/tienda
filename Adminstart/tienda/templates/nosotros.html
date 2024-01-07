@@ -1,0 +1,92 @@
+{% extends "base.html" %} {% load static %}{% block contenido%}
+<div class="jumbotron">
+  <h1 class="display-4">Bienvenido a la Escuela de Ballet</h1>
+  <p class="lead">Descubre la belleza de la danza con nosotros.</p>
+</div>
+
+<!-- Sección Sobre Nosotros -->
+<div class="container" id="sobre-nosotros">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Sobre Nosotros</h2>
+      <p>
+        La Escuela de Ballet es un lugar dedicado a la enseñanza y práctica de
+        la danza clásica. Nuestra misión es proporcionar un ambiente acogedor
+        donde los estudiantes puedan explorar su pasión por el ballet y
+        desarrollar sus habilidades artísticas.
+      </p>
+    </div>
+    <div class="col-md-6">
+      <img
+        src="{% static 'images/nosotros.jpg' %}"
+        alt="Ballet"
+        class="img-fluid"
+      />
+    </div>
+  </div>
+</div>
+
+<!-- Sección Nuestro Equipo -->
+<div class="container" id="nuestro-equipo">
+  <div class="row">
+    <div class="col-md-6">
+      <img
+        src="{% static 'images/equipo.jpg' %}"
+        alt="Nuestro Equipo"
+        class="img-fluid"
+      />
+    </div>
+    <div class="col-md-6">
+      <h2>Nuestro Equipo</h2>
+      <p>
+        Nuestro equipo está formado por profesionales apasionados por la danza.
+        Contamos con instructores experimentados y comprometidos con el
+        crecimiento artístico de cada estudiante. Juntos, compartimos la visión
+        de fomentar el amor por el ballet y la excelencia en la danza.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Sección Clases -->
+<div class="container" id="clases">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Clases</h2>
+      <p>
+        Ofrecemos una variedad de clases diseñadas para estudiantes de todos los
+        niveles. Desde principiantes hasta avanzados, cada clase se adapta para
+        ayudar a los estudiantes a desarrollar fuerza, flexibilidad y gracia en
+        su arte.
+      </p>
+    </div>
+    <div class="col-md-6">
+      <img
+        src="{% static 'images/clases.jpg' %}"
+        alt="Clases de Ballet"
+        class="img-fluid"
+      />
+    </div>
+  </div>
+</div>
+
+<!-- Sección Contacto -->
+<div class="container mb-5" id="contacto">
+  <div class="row">
+    <div class="col-md-6">
+      <img
+        src="{% static 'images/contacto.jpg' %}"
+        alt="Contacto"
+        class="img-fluid"
+      />
+    </div>
+    <div class="col-md-6">
+      <h2>Contacto</h2>
+      <p>
+        Estamos aquí para responder tus preguntas y ayudarte en tu viaje en la
+        danza. ¡Contáctanos y únete a nuestra familia de ballet!
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

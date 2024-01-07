@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from .forms import registro_form, inicio_form
 from django.contrib.auth.decorators import login_required
@@ -55,15 +55,42 @@ def compra(request):
     return render(request, "compra.html")
 
 
+def buscar(request):
+    busqueda = ""
+    productos = None
+    if request.method == "POST":
+        busqueda = request.POST.get("buscar", "").strip()
+        if busqueda:
+            productos = Producto.objects.filter(nombre__icontains=busqueda)
+            return render(
+                request, "buscar.html", {"busqueda": busqueda, "productos": productos}
+            )
+        else:
+            return redirect(request.META.get("HTTP_REFERER", "index"))
+
+    return render(
+        request, "buscar.html", {"busqueda": busqueda, "productos": productos}
+    )
+
+
+@login_required
 def user(request):
     return render(request, "user.html")
 
 
-@login_required
-def producto(request, producto_id):
-    producto = Producto.objects.get(pk=producto_id)
+def nosotros(request):
+    return render(request, "nosotros.html")
 
+
+def contacto(request):
+    return render(request, "contacto.html")
+
+
+@login_required
+def agregar_carrito(request):
     if request.method == "POST":
+        producto_id = request.POST.get("producto_id")
+        producto = get_object_or_404(Producto, pk=producto_id)
         carrito, creado = Carrito.objects.get_or_create(usuario=request.user)
 
         item_carrito, creado = ItemCarrito.objects.get_or_create(
@@ -71,8 +98,11 @@ def producto(request, producto_id):
         )
         item_carrito.cantidad += 1
         item_carrito.save()
-        return redirect("producto", producto_id=producto_id)
+        return redirect(request.META.get("HTTP_REFERER", "index"))
 
+
+def producto(request, producto_id):
+    producto = Producto.objects.get(pk=producto_id)
     return render(request, "producto.html", {"producto": producto})
 
 
@@ -104,6 +134,7 @@ def registrar(request):
     return render(request, "aut/registrar.html", {"form": form})
 
 
+@login_required
 def cerrar_sesion(request):
     logout(request)
     return redirect("index")

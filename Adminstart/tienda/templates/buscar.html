@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% block contenido%}
+
+<div class="container-fluid mt-5">
+  <div class="row">
+    <!-- Columna de Productos (Derecha) -->
+    <div class="col-md-9">
+      <h2>Resultado(s)</h2>
+      <!-- Aquí se mostrarán las tarjetas de productos -->
+      <div class="row">
+        {% for producto in productos%}
+        <!-- Tarjeta de Producto 1 -->
+        <div class="col-md-4 mb-4">
+          <div
+            class="card h-100 border-0 shadow rounded"
+            style="background-color: #ffffff"
+          >
+            <a href="{% url 'producto' producto_id=producto.id %}">
+              <img
+                src="{{ producto.imagen.url }}"
+                alt="{{ producto.nombre }}"
+                class="card-img-top"
+              />
+            </a>
+            <div class="card-body">
+              <h5 class="card-title">{{producto.nombre}}</h5>
+              <p class="card-text">€{{producto.precio}}</p>
+              <form method="post" action="{% url 'agregar_carrito' %}">
+                {% csrf_token %}
+                <input
+                  type="hidden"
+                  name="producto_id"
+                  value="{{ producto.id }}"
+                />
+                <button
+                  type="submit"
+                  class="btn btn-success btn-block btn-sm mb-1"
+                >
+                  Agregar al Carrito
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+        <!-- Tarjeta de Producto 2 -->
+        <div class="col-md-4 mb-4">
+          <!-- Repite la estructura de la tarjeta para más productos -->
+        </div>
+
+        <!-- Agrega más tarjetas de productos según sea necesario -->
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endblock%}
